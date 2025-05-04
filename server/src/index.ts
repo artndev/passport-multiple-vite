@@ -3,7 +3,7 @@ dotenv.config()
 
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import express, { request } from 'express'
+import express from 'express'
 import session from 'express-session'
 import config from './config.json' with { type: 'json' }
 import passport from 'passport'
@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(
   session({
-    secret: '17fa5175-26e8-419c-a17b-5ab2e42bb27d',
+    secret: process.env.SESSION_SECRET!,
     saveUninitialized: false,
     resave: false,
     cookie: {
