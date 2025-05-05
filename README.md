@@ -1,0 +1,13 @@
+You can find there the simple authorization system created mainly using React / Express and based on [Passport-Local Strategy](https://github.com/jaredhanson/passport-local).
+
+## Tech Stack
+
+<img src="./assets/typescript.svg" width=50 />&nbsp;&nbsp;&nbsp;
+<img src="./assets/javascript.svg" width=50 />&nbsp;&nbsp;&nbsp;
+<img src="./assets/html5.svg" width=50 />&nbsp;&nbsp;
+<img src="./assets/css3.svg" width=50 />
+
+<img src="./assets/react.svg" width=50 />&nbsp;&nbsp;&nbsp;
+<img src="./assets/express.svg" width=50 />
+<img src="./assets/axios.svg" width=50 />
+<img src="./assets/passport.png" width=50 />
