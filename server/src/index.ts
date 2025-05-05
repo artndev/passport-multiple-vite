@@ -39,19 +39,23 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.post('/api/login', passport.authenticate('local-login'), (_, res) => {
+app.post('/api/login', passport.authenticate('local-login'), (req, res) => {
   res.status(200).json({
     message: 'You have successfully logged in',
-    answer: true,
+    answer: req.user,
   })
 })
 
-app.post('/api/register', passport.authenticate('local-register'), (_, res) => {
-  res.status(200).json({
-    message: 'You have successfully registered',
-    answer: true,
-  })
-})
+app.post(
+  '/api/register',
+  passport.authenticate('local-register'),
+  (req, res) => {
+    res.status(200).json({
+      message: 'You have successfully registered',
+      answer: req.user,
+    })
+  }
+)
 
 app.get('/api/auth/status', (req, res) => {
   if (!req.user) {
