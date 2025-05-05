@@ -7,7 +7,7 @@ import express from 'express'
 import session from 'express-session'
 import config from './config.json' with { type: 'json' }
 import passport from 'passport'
-import './strategies/local_strategy'
+import './strategies/local_strategies'
 
 const app = express()
 app.use(
@@ -39,32 +39,57 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.post('/api/auth', passport.authenticate('local'), (req, res) => {
-  res.sendStatus(200)
+app.post('/api/login', passport.authenticate('local-login'), (_, res) => {
+  res.status(200).json({
+    message: 'You have successfully logged in',
+    answer: true,
+  })
+})
+
+app.post('/api/register', passport.authenticate('local-register'), (_, res) => {
+  res.status(200).json({
+    message: 'You have successfully registered',
+    answer: true,
+  })
 })
 
 app.get('/api/auth/status', (req, res) => {
   if (!req.user) {
-    res.sendStatus(401)
+    res.status(401).json({
+      message: 'You are not authorized',
+      answer: true,
+    })
     return
   }
 
-  res.send(req.user)
+  res.status(200).json({
+    message: 'You are authorized',
+    answer: req.user,
+  })
 })
 
 app.post('/api/auth/logout', (req, res) => {
   if (!req.user) {
-    res.sendStatus(401)
+    res.status(401).json({
+      message: 'You are not authorized',
+      answer: true,
+    })
     return
   }
 
   req.logout(err => {
     if (err) {
-      res.sendStatus(400)
+      res.status(500).json({
+        message: 'Server is not responding',
+        answer: null,
+      })
       return
     }
 
-    res.sendStatus(200)
+    res.status(200).json({
+      message: 'You have successfully logged out',
+      answer: true,
+    })
   })
 })
 
