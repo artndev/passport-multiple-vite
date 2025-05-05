@@ -5,8 +5,8 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
 import session from 'express-session'
-import config from './config.json' with { type: 'json' }
 import passport from 'passport'
+import config from './config.json' with { type: 'json' }
 import './strategies/local_strategies'
 
 const app = express()
