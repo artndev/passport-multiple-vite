@@ -32,6 +32,9 @@ app.use(
     resave: false,
     cookie: {
       maxAge: 3600000, // 1h
+      path: '/',
+      secure: true,
+      sameSite: 'none',
     },
   })
 )
