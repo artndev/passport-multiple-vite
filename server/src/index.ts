@@ -7,7 +7,7 @@ import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import config from './config.json' with { type: 'json' }
-import './strategies/local_strategies'
+import './strategies/local_strategies.js'
 
 const app = express()
 app.use(
