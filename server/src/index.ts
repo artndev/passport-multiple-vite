@@ -36,6 +36,7 @@ app.use(
     cookie: {
       maxAge: 3600000, // 1h
       path: '/',
+      httpOnly: true,
       secure: true,
       sameSite: 'none',
     },
