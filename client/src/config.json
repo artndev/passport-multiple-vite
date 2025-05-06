@@ -1,4 +1,4 @@
 {
-  "_comment": "http://localhost:5000",
-  "BACKEND_URL": "https://passport-local-backend.vercel.app"
+  "_comment": "https://passport-local-backend.vercel.app",
+  "BACKEND_URL": "http://localhost:5000"
 }

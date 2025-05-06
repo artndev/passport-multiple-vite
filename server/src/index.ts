@@ -6,9 +6,10 @@ import cors from 'cors'
 import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
-import config from './config.json' with { type: 'json' }
 import { v4 as uuidv4 } from 'uuid'
-import './strategies/local_strategies.js'
+import config from './config.json' with { type: 'json' }
+import * as routers from './routers/_routers.js'
+import './strategies/_strategies.js'
 
 const app = express()
 app.use(
@@ -37,8 +38,8 @@ app.use(
       maxAge: 3600000, // 1h
       path: '/',
       httpOnly: true,
-      secure: true,
-      sameSite: 'none',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     },
   })
 )
@@ -46,23 +47,8 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.post('/api/login', passport.authenticate('local-login'), (req, res) => {
-  res.status(200).json({
-    message: 'You have successfully logged in',
-    answer: req.user,
-  })
-})
-
-app.post(
-  '/api/register',
-  passport.authenticate('local-register'),
-  (req, res) => {
-    res.status(200).json({
-      message: 'You have successfully registered',
-      answer: req.user,
-    })
-  }
-)
+app.use('/api/local', routers.localRouter)
+app.use('/api/google', routers.googleRouter)
 
 app.get('/api/auth/status', (req, res) => {
   if (!req.user) {

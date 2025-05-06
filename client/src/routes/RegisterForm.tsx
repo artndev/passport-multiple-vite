@@ -18,7 +18,7 @@ const RegisterForm = () => {
       formData.forEach((val, key) => (data[key] = val))
 
       axios
-        .post('/api/register', data)
+        .post('/api/local/register', data)
         .then(res => {
           navigator('/')
 

@@ -18,7 +18,7 @@ const LoginForm = () => {
       formData.forEach((val, key) => (data[key] = val))
 
       axios
-        .post('/api/login', data)
+        .post('/api/local/login', data)
         .then(res => {
           navigator('/')
 
