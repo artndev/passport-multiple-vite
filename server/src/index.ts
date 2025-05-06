@@ -7,6 +7,7 @@ import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import config from './config.json' with { type: 'json' }
+import { v4 as uuidv4 } from 'uuid'
 import './strategies/local_strategies.js'
 
 const app = express()
@@ -30,12 +31,13 @@ app.use(
     secret: process.env.SESSION_SECRET!,
     saveUninitialized: false,
     resave: false,
+    proxy: true,
+    name: uuidv4(),
     cookie: {
       maxAge: 3600000, // 1h
       path: '/',
       secure: true,
       sameSite: 'none',
-      domain: '.domain.com',
     },
   })
 )
