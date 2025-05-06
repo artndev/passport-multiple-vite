@@ -1,4 +1,5 @@
 {
   "SERVER_PORT": 5000,
+  "_comment": "https://passport-local-frontend.vercel.app",
   "FRONTEND_URL": "http://localhost:3000"
 }
