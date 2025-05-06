@@ -1,5 +1,7 @@
 You can find there the simple authorization system created mainly using React / Express and based on [Passport-Local Strategy](https://github.com/jaredhanson/passport-local).
 
+P.S.: Deployed on Vercel.
+
 ## Tech Stack
 
 <img src="./assets/typescript.svg" width=50 />&nbsp;&nbsp;&nbsp;
