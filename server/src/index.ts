@@ -35,6 +35,7 @@ app.use(
       path: '/',
       secure: true,
       sameSite: 'none',
+      domain: 'passport-local-frontend.vercel.app',
     },
   })
 )
