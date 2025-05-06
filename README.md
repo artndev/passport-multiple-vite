@@ -10,4 +10,5 @@ You can find there the simple authorization system created mainly using React / 
 <img src="./assets/react.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/express.svg" width=50 />
 <img src="./assets/axios.svg" width=50 />
+<img src="./assets/vercel.svg" width=50 />&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="./assets/passport.png" width=50 />
