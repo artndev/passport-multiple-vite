@@ -12,7 +12,7 @@ declare global {
 
   export interface IAuthContext {
     auth: IUser | undefined
-    setAuth: (auth: IUser) => void | undefined
+    setAuth: (auth: IUser | undefined) => void | undefined
   }
 
   export interface IAuthFormProps {

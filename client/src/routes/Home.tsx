@@ -3,7 +3,7 @@ import axios from '../axios'
 import { useAuthContext } from '../contexts/Auth'
 
 const Home = () => {
-  const { auth } = useAuthContext()
+  const { auth, setAuth } = useAuthContext()
 
   const logout = (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
@@ -11,7 +11,7 @@ const Home = () => {
 
       axios
         .post('/api/auth/logout')
-        .then(() => window.location.reload())
+        .then(() => setAuth(undefined))
         .catch(err => console.log(err))
     } catch (err) {
       console.log(err)

@@ -9,11 +9,14 @@ export default [
       {
         usernameField: 'username',
         passwordField: 'password',
+        passReqToCallback: true,
       },
-      (username, password, done) => {
+      (req, username, password, done) => {
         try {
-          const user = db.users.find(user => user.username === username)
-          if (!user) throw new Error('User is not found')
+          const user = db.users.find(
+            user => user.username === username || user.email === username
+          )
+          if (!user) throw new Error('This user is not found')
           if (user.password !== password)
             throw new Error('Your credentials are invalid')
 
@@ -34,8 +37,6 @@ export default [
       },
       (req, username, password, done) => {
         try {
-          if (!req.body?.email) throw new Error('There is no email field')
-
           const isUsername = db.users.find(user => user.username === username)
           if (isUsername)
             throw new Error('This username has already been taken')
@@ -48,6 +49,8 @@ export default [
             username: username,
             password: password,
             email: req.body.email,
+            googleId: '',
+            githubId: '',
           }
           db.users.push(user)
 

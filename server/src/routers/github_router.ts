@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get(
   '/login',
-  passport.authenticate('google', { scope: ['email', 'profile'] }),
+  passport.authenticate('github', { scope: ['user:email'] }),
   (req, res) => {
     res.status(200).json({
       message: 'You have successfully logged in',
@@ -16,7 +16,7 @@ router.get(
 
 router.get(
   '/callback',
-  passport.authenticate('google', {
+  passport.authenticate('github', {
     failureRedirect: 'http://localhost:3000/fallback',
     successReturnToOrRedirect: 'http://localhost:3000',
   })

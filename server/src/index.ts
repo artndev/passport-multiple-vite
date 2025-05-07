@@ -49,6 +49,7 @@ app.use(passport.session())
 
 app.use('/api/local', routers.localRouter)
 app.use('/api/google', routers.googleRouter)
+app.use('/api/github', routers.githubRouter)
 
 app.get('/api/auth/status', (req, res) => {
   if (!req.user) {

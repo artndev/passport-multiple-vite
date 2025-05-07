@@ -1,4 +1,5 @@
 export {}
+import { Request } from 'express'
 
 declare global {
   export interface IUser {
@@ -6,5 +7,7 @@ declare global {
     username: string
     password: string
     email: string
+    googleId: string
+    githubId: string
   }
 }
