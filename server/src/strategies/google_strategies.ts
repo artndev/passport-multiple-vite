@@ -15,7 +15,7 @@ export default [
         clientID: process.env.GOOGLE_CLIENT_ID!,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
         callbackURL: 'http://localhost:5000/api/google/login/callback',
-        state: '',
+        state: JSON.stringify({ test: 'yay!' }),
       },
       (accessToken, refreshToken, profile, done) => {
         try {

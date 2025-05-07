@@ -17,9 +17,14 @@ router.get(
 router.get(
   '/login/callback',
   passport.authenticate('google-login', {
-    successReturnToOrRedirect: 'http://localhost:3000',
     failureRedirect: 'http://localhost:3000/google-fallback',
-  })
+    successRedirect: 'http://localhost:3000',
+  }),
+  (req, res) => {
+    if (!req.user) return
+
+    console.log(req.user)
+  }
 )
 
 router.get(
