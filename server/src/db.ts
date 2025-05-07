@@ -30,5 +30,11 @@ export default {
       password: '12345',
       email: 'test5@gmail.com',
     },
+    {
+      id: 6,
+      username: 'test6',
+      password: '12345',
+      email: 'agressorios@gmail.com',
+    },
   ],
 }

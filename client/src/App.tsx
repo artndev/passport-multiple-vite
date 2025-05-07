@@ -3,6 +3,7 @@ import IsNotLogged from './outlets/isNotLogged'
 import Home from './routes/Home'
 import LoginForm from './routes/LoginForm'
 import RegisterForm from './routes/RegisterForm'
+import GoogleFallback from './routes/GoogleFallback'
 
 const App = () => {
   return (
@@ -14,6 +15,8 @@ const App = () => {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
         </Route>
+
+        <Route path="google-fallback" element={<GoogleFallback />} />
       </Routes>
     </BrowserRouter>
   )
