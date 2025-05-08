@@ -40,6 +40,7 @@ app.use(
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+      domain: '',
     },
   })
 )
@@ -55,7 +56,7 @@ app.get('/api/auth/status', (req, res) => {
   if (!req.user) {
     res.status(401).json({
       message: 'You are not authorized',
-      answer: true,
+      answer: null,
     })
     return
   }
@@ -70,7 +71,7 @@ app.post('/api/auth/logout', (req, res) => {
   if (!req.user) {
     res.status(401).json({
       message: 'You are not authorized',
-      answer: true,
+      answer: null,
     })
     return
   }
