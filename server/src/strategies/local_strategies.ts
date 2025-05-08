@@ -9,9 +9,8 @@ export default [
       {
         usernameField: 'username',
         passwordField: 'password',
-        passReqToCallback: true,
       },
-      (req, username, password, done) => {
+      (username, password, done) => {
         try {
           const user = db.users.find(
             user => user.username === username || user.email === username
@@ -20,9 +19,9 @@ export default [
           if (user.password !== password)
             throw new Error('Your credentials are invalid')
 
-          done(undefined, user)
+          return done(null, user)
         } catch (err) {
-          done(err, undefined)
+          return done(err, undefined)
         }
       }
     )
@@ -54,9 +53,9 @@ export default [
           }
           db.users.push(user)
 
-          done(undefined, user)
+          return done(null, user)
         } catch (err) {
-          done(err, undefined)
+          return done(err, undefined)
         }
       }
     )
