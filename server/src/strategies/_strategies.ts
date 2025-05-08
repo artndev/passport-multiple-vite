@@ -5,6 +5,7 @@ import googleStrategies from './google_strategies.js'
 import localStrategies from './local_strategies.js'
 
 passport.serializeUser((user, done) => {
+  // console.log(user)
   return done(null, (user as IUser).id)
 })
 
