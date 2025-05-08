@@ -5,7 +5,7 @@ import googleStrategies from './google_strategies.js'
 import githubStrategies from './github_strategies.js'
 
 passport.serializeUser((user, done) => {
-  done(undefined, (user as IUser).id)
+  return done(undefined, (user as IUser).id)
 })
 
 passport.deserializeUser((id, done) => {
@@ -13,9 +13,9 @@ passport.deserializeUser((id, done) => {
     const user = db.users.find(user => user.id === id)
     if (!user) throw new Error('Current user is not found')
 
-    done(undefined, user)
+    return done(undefined, user)
   } catch (err) {
-    done(err, undefined)
+    return done(err, undefined)
   }
 })
 

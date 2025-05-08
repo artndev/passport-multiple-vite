@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get(
   '/login',
-  passport.authenticate('github', { scope: ['user:email'] }),
+  passport.authenticate('github', { scope: ['email', 'profile'] }),
   (req, res) => {
     res.status(200).json({
       message: 'You have successfully logged in',

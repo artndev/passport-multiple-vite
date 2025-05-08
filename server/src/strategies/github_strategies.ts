@@ -21,13 +21,13 @@ export default [
         done: DoneCallback
       ) => {
         try {
-          console.log(profile)
+          // console.log(profile)
           const user = db.users.find(user => user.githubId === profile.id)
           if (!user) throw new Error('This user is not found')
 
-          done(undefined, user)
+          return done(null, user)
         } catch (err) {
-          done(err, undefined)
+          return done(err, undefined)
         }
       }
     )
