@@ -1,25 +1,29 @@
 import express from 'express'
 import passport from 'passport'
+import config from '../config.json' with { type: 'json' }
 
 const router = express.Router()
 
-router.get(
-  '/login',
-  passport.authenticate('github', { scope: ['email', 'profile'] }),
-  (req, res) => {
-    res.status(200).json({
-      message: 'You have successfully logged in',
-      answer: req.user,
-    })
-  }
-)
+router.get('/login', (req, res, next) => {
+  return passport.authenticate('github', {
+    scope: ['profile', 'email'],
+    state: req.query.id as string | undefined,
+  })(req, res, next)
+})
 
-router.get(
-  '/callback',
-  passport.authenticate('github', {
-    failureRedirect: 'http://localhost:3000/fallback',
-    successReturnToOrRedirect: 'http://localhost:3000',
-  })
-)
+router.get('/callback', (req, res, next) => {
+  return passport.authenticate(
+    'github',
+    {
+      successReturnToOrRedirect: `${config.CLIENT_URL}/register`,
+      failureRedirect: `${config.CLIENT_URL}`,
+    },
+    (err: Error | null) => {
+      if (err) return res.redirect(`${config.CLIENT_URL}/register`)
+
+      return res.redirect(`${config.CLIENT_URL}`)
+    }
+  )(req, res, next)
+})
 
 export default router

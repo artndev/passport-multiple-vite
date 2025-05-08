@@ -40,13 +40,13 @@ export default {
       googleId: '',
       githubId: '',
     },
-    {
-      id: 6,
-      username: 'test6',
-      password: '12345',
-      email: 'agressorios@gmail.com',
-      googleId: '114847648553844843839',
-      githubId: '97910780',
-    },
+    // {
+    //   id: 6,
+    //   username: 'test6',
+    //   password: '12345',
+    //   email: 'agressorios@gmail.com',
+    //   googleId: '114847648553844843839',
+    //   githubId: '97910780',
+    // },
   ],
 }

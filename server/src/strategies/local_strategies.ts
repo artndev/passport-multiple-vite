@@ -9,9 +9,8 @@ export default [
       {
         usernameField: 'username',
         passwordField: 'password',
-        passReqToCallback: true,
       },
-      (req, username, password, done) => {
+      (username, password, done) => {
         try {
           const user = db.users.find(
             user => user.username === username || user.email === username

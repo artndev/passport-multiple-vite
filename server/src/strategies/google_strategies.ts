@@ -18,12 +18,21 @@ export default [
       (req, accessToken, refreshToken, profile, done) => {
         try {
           // console.log(profile)
-          const user = db.users.find(user => user.googleId === profile.id)
+          // console.log(req.query.state)
+          let user = db.users.find(user => user.googleId === profile.id)
+          if (req.query.state) {
+            const index = db.users.findIndex(
+              user => user.id === Number(req.query.state)
+            )
+            console.log(index, db.users[index])
+            if (index === -1) throw new Error('This user is not found')
+
+            db.users[index]!.googleId = profile.id
+            user = db.users[index]
+          }
+
           if (!user) throw new Error('This user is not found')
 
-          // request goes from client in linking process you are going to be authed via socials
-          // add google id to user db
-          // get id from response
           return done(null, user)
         } catch (err) {
           return done(err, undefined)
