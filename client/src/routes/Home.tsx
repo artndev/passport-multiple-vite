@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from '../axios'
 import { useAuthContext } from '../contexts/Auth'
+import '../styles/css/Home.css'
 import config from '../config.json'
 
 const Home = () => {
@@ -24,24 +25,44 @@ const Home = () => {
   // }, [auth])
 
   return (
-    <>
-      {!auth ? (
-        <>
+    <div className="home__container">
+      <div className="home__subcontainer">
+        {!auth ? (
           <h3>Not Authorized</h3>
-          <a href={`${config.BACKEND_URL}/api/google/login`}>Google</a>
-          <br />
-          <a href={`${config.BACKEND_URL}/api/github/login`}>GitHub</a>
-        </>
-      ) : (
-        <h3>Authorized</h3>
-      )}
-
-      {auth && (
-        <button type="button" onClick={logout}>
-          Logout
-        </button>
-      )}
-    </>
+        ) : (
+          <>
+            <h3>Authorized</h3>
+            <div className="home__group">
+              {auth.googleId === '' ? (
+                <a
+                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.id}`}
+                >
+                  Attach Google
+                </a>
+              ) : (
+                <span>
+                  Google is attached as: <strong>{auth.googleId}</strong>
+                </span>
+              )}
+              {auth.githubId === '' ? (
+                <a
+                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.id}`}
+                >
+                  Attach Github
+                </a>
+              ) : (
+                <span>
+                  Github is attached as: <strong>{auth.githubId}</strong>
+                </span>
+              )}
+            </div>
+            <button type="button" onClick={logout}>
+              Logout
+            </button>
+          </>
+        )}
+      </div>
+    </div>
   )
 }
 

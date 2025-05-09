@@ -5,7 +5,7 @@ import { isNotAuthenticated } from '../middlewares'
 
 const router = express.Router()
 
-router.get('/login', isNotAuthenticated, (req, res, next) => {
+router.get('/login', (req, res, next) => {
   return passport.authenticate('github', {
     scope: ['profile', 'email'],
     state: req.query.id as string | undefined,

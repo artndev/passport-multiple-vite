@@ -8,6 +8,8 @@ declare global {
     username: string
     password: string
     email: string
+    googleId: string
+    githubId: string
   }
 
   export interface IAuthContext {
@@ -20,6 +22,7 @@ declare global {
     onSubmit: (...args) => void
     err: IAxiosError
     withEmail?: boolean
+    withSocials?: boolean
   }
 
   export type IAxiosErrorResponse = AxiosResponse | undefined

@@ -1,0 +1,31 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+
+  #title {
+    align-self: flex-start;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  button {
+    width: 50%;
+    padding: 8px;
+  }
+
+  .form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: inherit;
+
+    button {
+      width: 100%;
+    }
+  }
+}

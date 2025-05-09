@@ -1,30 +1,26 @@
 import React from 'react'
+import '../styles/css/AuthForm.css'
+import { useNavigate } from 'react-router-dom'
+import config from '../config.json'
 
 const AuthForm: React.FC<IAuthFormProps> = ({
   formTitle,
   onSubmit,
   err,
   withEmail,
+  withSocials,
 }) => {
+  const navigate = useNavigate()
+
   return (
-    <div>
-      <h3>{formTitle}</h3>
-      <form
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 5,
-          width: 250,
-        }}
-        action="post"
-        onSubmit={onSubmit}
-      >
-        {err && (
-          <span style={{ color: 'red' }}>
-            This username has already been taken or your credentials are
-            incorrect
-          </span>
-        )}
+    <form action="post" onSubmit={onSubmit}>
+      <h3 id="title">{formTitle}</h3>
+      {err && (
+        <span style={{ color: 'red' }}>
+          This username has already been taken or your credentials are incorrect
+        </span>
+      )}
+      <div className="form__group">
         <input
           type="text"
           name="username"
@@ -48,9 +44,23 @@ const AuthForm: React.FC<IAuthFormProps> = ({
             required
           />
         )}
-        <button type="submit">Do it</button>
-      </form>
-    </div>
+      </div>
+      <button type="submit">Do it</button>
+      {withSocials && (
+        <>
+          <span>•</span>
+          <h3>Log in with socials</h3>
+          <div className="form__group">
+            <a href={`${config.BACKEND_URL}/api/google/login`}>
+              <button type="button">Google</button>
+            </a>
+            <a href={`${config.BACKEND_URL}/api/github/login`}>
+              <button type="button">Github</button>
+            </a>
+          </div>
+        </>
+      )}
+    </form>
   )
 }
 

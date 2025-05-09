@@ -7,7 +7,8 @@ P.S.: It will be deployed on Vercel.
 <img src="./assets/typescript.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/javascript.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/html5.svg" width=50 />&nbsp;&nbsp;
-<img src="./assets/css3.svg" width=50 />
+<img src="./assets/css3.svg" width=50 />&nbsp;&nbsp;
+<img src="./assets/sass.svg" width=50 />
 
 <img src="./assets/react.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/express.svg" width=50 />

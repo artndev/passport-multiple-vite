@@ -8,9 +8,9 @@ import session from 'express-session'
 import passport from 'passport'
 import { v4 as uuidv4 } from 'uuid'
 import config from './config.json' with { type: 'json' }
+import { isAuthenticated } from './middlewares'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
-import { isAuthenticated } from './middlewares'
 
 const app = express()
 app.use(
@@ -20,11 +20,6 @@ app.use(
     credentials: true,
   })
 )
-
-// app.use((_, res, next) => {
-//   res.append('Access-Control-Allow-Headers', '*')
-//   next()
-// })
 
 app.use(express.json())
 app.use(cookieParser())
@@ -54,7 +49,7 @@ app.use('/api/github', routers.githubRouter)
 
 app.get('/api/auth/status', isAuthenticated, (req, res) => {
   res.status(200).json({
-    message: 'You are authorized as',
+    message: 'You are authorized',
     answer: req.user,
   })
 })

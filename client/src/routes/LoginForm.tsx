@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from '../axios'
 import AuthForm from '../components/AuthForm'
 import { useAuthContext } from '../contexts/Auth'
+import '../styles/css/LoginForm.css'
 
 const LoginForm = () => {
   const { setAuth } = useAuthContext()
@@ -34,7 +35,18 @@ const LoginForm = () => {
     }
   }
 
-  return <AuthForm formTitle="Login" onSubmit={onSubmit} err={err} />
+  return (
+    <div className="login__form-container">
+      <div className="login__form-subcontainer">
+        <AuthForm
+          formTitle="Log in"
+          onSubmit={onSubmit}
+          err={err}
+          withSocials
+        />
+      </div>
+    </div>
+  )
 }
 
 export default LoginForm
