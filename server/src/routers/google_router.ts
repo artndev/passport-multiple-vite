@@ -15,13 +15,17 @@ router.get('/callback', (req, res, next) => {
   return passport.authenticate(
     'google',
     {
-      successReturnToOrRedirect: `${config.CLIENT_URL}/register`,
-      failureRedirect: `${config.CLIENT_URL}`,
+      failureRedirect: `${config.CLIENT_URL}/fallback`,
     },
-    err => {
+    (err, user, _info) => {
       if (err) return res.redirect(`${config.CLIENT_URL}/register`)
+      if (!user) return res.redirect(`${config.CLIENT_URL}/fallback`)
 
-      return res.redirect(`${config.CLIENT_URL}`)
+      req.logIn(user, err2 => {
+        if (err2) return res.redirect(`${config.CLIENT_URL}/fallback`)
+
+        return res.redirect(`${config.CLIENT_URL}`)
+      })
     }
   )(req, res, next)
 })

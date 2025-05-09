@@ -19,16 +19,6 @@ const Home = () => {
     }
   }
 
-  const google = (e: React.MouseEvent<HTMLButtonElement>) => {
-    try {
-      e.preventDefault()
-
-      window.open(`${config.BACKEND_URL}/api/google/login`, '_self')
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   // useEffect(() => {
   //   console.log(auth)
   // }, [auth])
@@ -38,9 +28,9 @@ const Home = () => {
       {!auth ? (
         <>
           <h3>Not Authorized</h3>
-          <button type="button" onClick={google}>
-            Google
-          </button>
+          <a href={`${config.BACKEND_URL}/api/google/login`}>Google</a>
+          <br />
+          <a href={`${config.BACKEND_URL}/api/github/login`}>GitHub</a>
         </>
       ) : (
         <h3>Authorized</h3>

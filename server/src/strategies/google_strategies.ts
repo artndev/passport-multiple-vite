@@ -24,7 +24,8 @@ export default [
             const index = db.users.findIndex(
               user => user.id === Number(req.query.state)
             )
-            console.log(index, db.users[index])
+
+            //console.log(index, db.users[index])
             if (index === -1) throw new Error('This user is not found')
 
             db.users[index]!.googleId = profile.id

@@ -40,7 +40,6 @@ app.use(
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-      domain: '',
     },
   })
 )
@@ -53,7 +52,7 @@ app.use('/api/google', routers.googleRouter)
 app.use('/api/github', routers.githubRouter)
 
 app.get('/api/auth/status', (req, res) => {
-  if (!req.user) {
+  if (!req.isAuthenticated) {
     res.status(401).json({
       message: 'You are not authorized',
       answer: null,
@@ -68,7 +67,7 @@ app.get('/api/auth/status', (req, res) => {
 })
 
 app.post('/api/auth/logout', (req, res) => {
-  if (!req.user) {
+  if (!req.isAuthenticated) {
     res.status(401).json({
       message: 'You are not authorized',
       answer: null,
