@@ -1,6 +1,6 @@
 import express from 'express'
 import passport from 'passport'
-import { isNotAuthenticated } from '../middlewares'
+import { isNotAuthenticated } from '../middlewares.js'
 
 const router = express.Router()
 

@@ -1,7 +1,6 @@
 import express from 'express'
 import passport from 'passport'
 import config from '../config.json' with { type: 'json' }
-import { isNotAuthenticated } from '../middlewares'
 
 const router = express.Router()
 

@@ -8,7 +8,7 @@ import session from 'express-session'
 import passport from 'passport'
 import { v4 as uuidv4 } from 'uuid'
 import config from './config.json' with { type: 'json' }
-import { isAuthenticated } from './middlewares'
+import { isAuthenticated } from './middlewares.js'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
 
