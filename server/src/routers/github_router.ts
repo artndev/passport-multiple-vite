@@ -1,10 +1,11 @@
 import express from 'express'
 import passport from 'passport'
 import config from '../config.json' with { type: 'json' }
+import { isNotAuthenticated } from '../middlewares'
 
 const router = express.Router()
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isNotAuthenticated, (req, res, next) => {
   return passport.authenticate('github', {
     scope: ['profile', 'email'],
     state: req.query.id as string | undefined,

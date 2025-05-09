@@ -5,6 +5,7 @@ import { Request } from 'express'
 import passport from 'passport'
 import { Strategy as GithubStrategy, Profile } from 'passport-github2'
 import { VerifyCallback } from 'passport-google-oauth20'
+import config from '../config.json' with { type: 'json' }
 import db from '../db.js'
 
 export default [
@@ -14,13 +15,13 @@ export default [
       {
         clientID: process.env.GITHUB_CLIENT_ID!,
         clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-        callbackURL: 'http://localhost:5000/api/github/callback',
+        callbackURL: `${config.SERVER_URL}/api/github/callback`,
         passReqToCallback: true,
       },
       (
         req: Request,
-        accessToken: string,
-        refreshToken: string | undefined,
+        _accessToken: string,
+        _refreshToken: string | undefined,
         profile: Profile,
         done: VerifyCallback
       ) => {
