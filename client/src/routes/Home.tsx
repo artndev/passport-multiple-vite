@@ -40,9 +40,11 @@ const Home = () => {
                   Attach Google
                 </a>
               ) : (
-                <span>
+                <a
+                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.id}`}
+                >
                   Google is attached as: <strong>{auth.googleId}</strong>
-                </span>
+                </a>
               )}
               {auth.githubId === '' ? (
                 <a
@@ -51,9 +53,11 @@ const Home = () => {
                   Attach Github
                 </a>
               ) : (
-                <span>
+                <a
+                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.id}`}
+                >
                   Github is attached as: <strong>{auth.githubId}</strong>
-                </span>
+                </a>
               )}
             </div>
             <button type="button" onClick={logout}>
