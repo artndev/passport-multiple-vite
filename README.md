@@ -1,6 +1,6 @@
-You can find there the simple authorization system created mainly using React / Express and based on [Passport-Local Strategy](https://github.com/jaredhanson/passport-local).
+You can find there the advanced authorization system created mainly using React / Express and based on [Passport-Local Strategy](https://github.com/jaredhanson/passport-local), [Passport-Google-OAuth2 Strategy](https://github.com/jaredhanson/passport-google-oauth2) with [Passport-Github-OAuth2 Strategy](https://github.com/cfsghost/passport-github).
 
-P.S.: Deployed on Vercel.
+P.S.: It will be deployed on Vercel.
 
 ## Tech Stack
 
