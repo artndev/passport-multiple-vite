@@ -10,10 +10,6 @@
     {
       "src": "/(.*)",
       "dest": "server/src/index.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "dist/index.js"
     }
   ],
   "buildCommand": "npm i --prefix server && npm i --prefix client && npm run build --prefix client"
