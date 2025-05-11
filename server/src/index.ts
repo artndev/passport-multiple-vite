@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-dotenv.config({ path: '../../.env' })
+dotenv.config()
 
 import cookieParser from 'cookie-parser'
 import express from 'express'
