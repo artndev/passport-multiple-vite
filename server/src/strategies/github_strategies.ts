@@ -1,5 +1,8 @@
 import dotenv from 'dotenv'
-dotenv.config()
+import path from 'path'
+import * as pathes from '../pathes.js'
+const envPath = path.join(pathes.__dirname, '../..', '.env')
+dotenv.config({ path: envPath })
 
 import { Request } from 'express'
 import passport from 'passport'

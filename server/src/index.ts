@@ -1,21 +1,19 @@
 import dotenv from 'dotenv'
-dotenv.config()
+import * as pathes from './pathes.js'
+const clientBuildPath = path.join(pathes.__dirname, '../..', 'client', 'build')
+const envPath = path.join(pathes.__dirname, '../..', '.env')
+dotenv.config({ path: envPath })
 
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
-import path, { dirname } from 'path'
-import { fileURLToPath } from 'url'
+import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 import config from './config.json' with { type: 'json' }
 import { isAuthenticated } from './middlewares.js'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const clientBuild = path.join(__dirname, '../..', 'client', 'build')
 // console.log(clientBuild)
 
 const app = express()
@@ -27,7 +25,7 @@ const app = express()
 //   })
 // )
 app.use(express.json())
-app.use(express.static(clientBuild))
+app.use(express.static(clientBuildPath))
 app.use(cookieParser())
 app.use(
   session({
@@ -40,8 +38,8 @@ app.use(
       maxAge: 3600000, // 1h
       path: '/',
       httpOnly: true,
-      secure: true,
-      sameSite: 'none',
+      // secure: true,
+      // sameSite: 'none',
     },
   })
 )
@@ -77,7 +75,7 @@ app.post('/api/auth/logout', isAuthenticated, (req, res) => {
 })
 
 app.get('/*', (_req, res) => {
-  res.sendFile(path.join(clientBuild, 'index.html'))
+  res.sendFile(path.join(clientBuildPath, 'index.html'))
 })
 
 const port = config.SERVER_PORT || 8000
