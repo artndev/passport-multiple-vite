@@ -32,6 +32,7 @@
     "react-scripts": "^5.0.1",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
+    "ts-template": "file:..",
     "typescript": "^5.8.3",
     "typewriter-effect": "^2.21.0",
     "url": "^0.11.4",
