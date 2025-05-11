@@ -7,8 +7,6 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build_client": "npm run build --prefix client",
-    "install_all": "npm i && npm i --prefix server && npm i --prefix client --force",
     "format": "prettier --write ."
   },
   "devDependencies": {
