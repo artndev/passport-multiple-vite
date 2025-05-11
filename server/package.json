@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx watch ./src/index.ts",
-    "postinstall": "cd ../../client && npm i && npm run build"
+    "postinstall": "npm i --force --prefix ../../client && npm run build --prefix ../../client"
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
