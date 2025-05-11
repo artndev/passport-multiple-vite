@@ -2,18 +2,19 @@
   "version": 2,
   "builds": [
     {
-      "src": "src/index.ts",
+      "src": "server/src/index.ts",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/index.ts"
+      "dest": "server/src/index.ts"
     },
     {
       "src": "/(.*)",
       "dest": "dist/index.js"
     }
-  ]
+  ],
+  "buildCommand": "npm i --prefix server && npm i --prefix client && npm run build --prefix client"
 }
