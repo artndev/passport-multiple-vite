@@ -23,5 +23,5 @@
       "destination": "server/src/index.js"
     }
   ],
-  "buildCommand": "npm install --prefix server && npm install --prefix client && npm run build --prefix client"
+  "buildCommand": "npm i && npm i --prefix server && npm i --force --prefix client && npm run build --prefix client"
 }
