@@ -21,7 +21,7 @@
       "dest": "server/dist/index.js"
     }
   ],
-  "outputDirectory": "statics",
+  "outputDirectory": "client/build",
   "installCommand": "npm i",
   "buildCommand": "npm i --prefix server && npm i --legacy-peer-deps --prefix client && npm run build --prefix client"
 }
