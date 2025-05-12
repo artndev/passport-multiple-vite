@@ -7,7 +7,7 @@ import Fallback from './routes/Fallback'
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<Home />} />
 
