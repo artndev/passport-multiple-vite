@@ -7,7 +7,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "server/src/index.js"
+      "destination": "client/build/index.html"
     }
   ],
   "outputDirectory": "client/build",
