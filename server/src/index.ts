@@ -1,17 +1,18 @@
 import dotenv from 'dotenv'
 dotenv.config()
 
-import { dirname } from 'path'
-import { fileURLToPath } from 'url'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const clientBuildPath = path.join(__dirname, '../../', 'client')
+// import { dirname } from 'path'
+// import { fileURLToPath } from 'url'
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = dirname(__filename)
+// const clientBuildPath = path.join(__dirname, '../../', 'client')
+import path from 'path'
+const clientBuildPath = path.join(process.cwd(), '../', 'client')
 
 import cookieParser from 'cookie-parser'
 import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
-import path from 'path'
 import { v4 as uuidv4 } from 'uuid'
 import config from './config.json' with { type: 'json' }
 import { isAuthenticated } from './middlewares.js'
