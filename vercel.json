@@ -2,11 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": "server/dist/**"
-      }
+      "src": "server/dist/**",
+      "use": "@vercel/node"
     }
   ],
   "rewrites": [
