@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/css/AuthForm.css'
-import { useNavigate } from 'react-router-dom'
 import config from '../config.json'
 
 const AuthForm: React.FC<IAuthFormProps> = ({
@@ -10,8 +9,6 @@ const AuthForm: React.FC<IAuthFormProps> = ({
   withEmail,
   withSocials,
 }) => {
-  const navigate = useNavigate()
-
   return (
     <form action="post" onSubmit={onSubmit}>
       <h3 id="title">{formTitle}</h3>

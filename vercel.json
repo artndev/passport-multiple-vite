@@ -11,6 +11,6 @@
     }
   ],
   "outputDirectory": "client/build",
-  "installCommand": "npm i --legacy-peer-deps",
-  "buildCommand": "npm i --legacy-peer-deps --prefix server && npm i --legacy-peer-deps --prefix client && npm run build --prefix client"
+  "installCommand": "npm i",
+  "buildCommand": "npm i --prefix server && npm i --legacy-peer-deps --prefix client && npm run build --prefix client"
 }
