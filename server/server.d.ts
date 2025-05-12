@@ -1,5 +1,4 @@
 export {}
-import { Request } from 'express'
 
 declare global {
   export interface IUser {
