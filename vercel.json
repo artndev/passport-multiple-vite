@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "server/dist/index.js"
+      "src": "/api/(.*)",
+      "dest": "server/dist/index.js"
     },
     {
-      "source": "/(.*)",
-      "destination": "server/dist/index.js"
+      "src": "/(.*)",
+      "dest": "server/dist/index.js"
     }
   ],
   "outputDirectory": "client/build",
