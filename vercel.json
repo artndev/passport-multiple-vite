@@ -1,9 +1,19 @@
 {
   "version": 2,
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "destination": "server/src"
+      "src": "server/src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server/src/index.ts"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "dist/index.js"
     },
     {
       "source": "/(.*)",
@@ -12,5 +22,5 @@
   ],
   "outputDirectory": "client/build",
   "installCommand": "npm i",
-  "buildCommand": "npm i --prefix server && npm i --legacy-peer-deps --prefix client && npm run build --prefix server && npm run build --prefix client"
+  "buildCommand": "npm i --prefix server && npm i --legacy-peer-deps --prefix client && npm run build --prefix client"
 }
