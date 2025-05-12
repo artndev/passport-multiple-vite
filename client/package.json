@@ -38,6 +38,11 @@
     "url": "^0.11.4",
     "web-vitals": "^2.1.4"
   },
+  "overrides": {
+    "typescript": "^5.0.4",
+    "fork-ts-checker-webpack-plugin": "^6.5.3",
+    "@typescript-eslint/typescript-estree": "^5.57.1"
+  },
   "scripts": {
     "start": "craco start",
     "build": "craco build",
