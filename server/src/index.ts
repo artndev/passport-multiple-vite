@@ -1,7 +1,8 @@
 // repush
 import dotenv from 'dotenv'
 import * as pathes from './paths.js'
-const clientBuildPath = path.join(pathes.__dirname, '../..', 'client', 'build')
+const clientBuildPath = path.join(pathes.__dirname, '../../', 'client')
+console.log(clientBuildPath)
 const envPath = path.join(pathes.__dirname, '../..', '.env')
 dotenv.config({ path: envPath })
 
