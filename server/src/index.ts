@@ -1,10 +1,11 @@
-// repush
 import dotenv from 'dotenv'
-import * as paths from './paths.js'
-const clientBuildPath = path.join(paths.__dirname, '../../', 'client')
-console.log(clientBuildPath)
-const envPath = path.join(paths.__dirname, '../..', '.env')
-dotenv.config({ path: envPath })
+dotenv.config()
+
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const clientBuildPath = path.join(__dirname, '../../', 'client')
 
 import cookieParser from 'cookie-parser'
 import express from 'express'
@@ -16,7 +17,6 @@ import config from './config.json' with { type: 'json' }
 import { isAuthenticated } from './middlewares.js'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
-// console.log(clientBuild)
 
 const app = express()
 // app.use(

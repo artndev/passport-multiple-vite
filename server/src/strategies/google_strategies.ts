@@ -1,8 +1,5 @@
 import dotenv from 'dotenv'
-import path from 'path'
-import * as paths from '../paths.js'
-const envPath = path.join(paths.__dirname, '../..', '.env')
-dotenv.config({ path: envPath })
+dotenv.config()
 
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
