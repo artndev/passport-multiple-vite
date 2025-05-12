@@ -7,7 +7,7 @@ dotenv.config()
 // const __dirname = dirname(__filename)
 // const clientBuildPath = path.join(__dirname, '../../', 'client')
 import path from 'path'
-const clientBuildPath = path.join(process.cwd(), '../', 'client')
+const clientBuildPath = path.join(process.cwd(), 'client')
 
 import cookieParser from 'cookie-parser'
 import express from 'express'
