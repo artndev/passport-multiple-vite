@@ -17,6 +17,7 @@ const App = () => {
         </Route>
 
         <Route path="fallback" element={<Fallback />} />
+        <Route path="*" element={<h3>Blank page</h3>} />
       </Routes>
     </BrowserRouter>
   )
