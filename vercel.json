@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server/src/index.ts",
-      "use": "@vercel/node"
+  "functions": {
+    "server/src/index.js": {
+      "runtime": "@vercel/node"
     }
-  ],
-  "routes": [
+  },
+  "outputDirectory": "client/build",
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "server/src/index.ts"
+      "source": "/api/(.*)",
+      "destination": "server/src/index.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "dist/index.js"
+      "source": "/(.*)",
+      "destination": "server/src/index.js"
     }
   ],
-  "buildCommand": "npm i --prefix server && npm i --force --prefix client && npm run build --prefix client"
+  "buildCommand": "npm install --prefix server && npm install --prefix client && npm run build --prefix client"
 }

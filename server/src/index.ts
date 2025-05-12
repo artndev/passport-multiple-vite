@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import * as pathes from './pathes.js'
+import * as pathes from './paths.js'
 const clientBuildPath = path.join(pathes.__dirname, '../..', 'client', 'build')
 const envPath = path.join(pathes.__dirname, '../..', '.env')
 dotenv.config({ path: envPath })
@@ -38,8 +38,7 @@ app.use(
       maxAge: 3600000, // 1h
       path: '/',
       httpOnly: true,
-      // secure: true,
-      // sameSite: 'none',
+      sameSite: 'strict',
     },
   })
 )

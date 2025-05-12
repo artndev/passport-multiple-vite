@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import path from 'path'
-import * as pathes from '../pathes.js'
-const envPath = path.join(pathes.__dirname, '../..', '.env')
+import * as paths from '../paths.js'
+const envPath = path.join(paths.__dirname, '../..', '.env')
 dotenv.config({ path: envPath })
 
 import passport from 'passport'
