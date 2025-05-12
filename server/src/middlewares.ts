@@ -5,7 +5,7 @@ export const isAuthenticated = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.isUnauthenticated()) {
+  if (!req.user) {
     res.status(401).json({
       message: 'You have not been authorized yet',
       answer: null,
@@ -21,7 +21,7 @@ export const isNotAuthenticated = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.isAuthenticated()) {
+  if (req.user) {
     res.status(403).json({
       message: 'You have already been authorized',
       answer: null,
