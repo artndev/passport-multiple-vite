@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [auth])
 
   return (
     <AuthContext.Provider
