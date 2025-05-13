@@ -40,7 +40,7 @@ app.use(
       maxAge: 3600000, // 1h
       path: '/',
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: 'lax',
     },
   })
@@ -49,6 +49,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+  console.log(req.session)
+
   if (!req.isAuthenticated()) {
     res.status(401).json({
       message: 'You have not been authorized yet',
