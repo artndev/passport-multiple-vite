@@ -5,13 +5,14 @@ import googleStrategies from './google_strategies.js'
 import localStrategies from './local_strategies.js'
 
 passport.serializeUser((user, done) => {
-  // console.log(user)
+  console.log(user)
   return done(null, (user as IUser).id)
 })
 
 passport.deserializeUser((id, done) => {
   try {
     const user = db.users.find(user => user.id === id)
+    console.log(user)
     if (!user) throw new Error('Current user is not found')
 
     return done(null, user)

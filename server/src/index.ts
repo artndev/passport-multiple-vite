@@ -35,7 +35,6 @@ app.use(
     secret: process.env.SESSION_SECRET!,
     saveUninitialized: false,
     resave: false,
-    proxy: true,
     name: uuidv4(),
     cookie: {
       maxAge: 3600000, // 1h
