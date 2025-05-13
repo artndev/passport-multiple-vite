@@ -48,10 +48,6 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/api/local', routers.localRouter)
-app.use('/api/google', routers.googleRouter)
-app.use('/api/github', routers.githubRouter)
-
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   if (!req.isAuthenticated()) {
     res.status(401).json({
@@ -63,6 +59,26 @@ const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
 
   next()
 }
+
+const isNotAuthenticated = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).json({
+      message: 'You have not been authorized yet',
+      answer: null,
+    })
+    return
+  }
+
+  next()
+}
+
+app.use('/api/local', isNotAuthenticated, routers.localRouter)
+app.use('/api/google', routers.googleRouter)
+app.use('/api/github', routers.githubRouter)
 
 app.get('/api/auth/status', isAuthenticated, (req, res) => {
   res.status(200).json({
