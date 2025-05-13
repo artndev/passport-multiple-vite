@@ -65,9 +65,9 @@ const isNotAuthenticated = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.isAuthenticated()) {
+  if (req.isAuthenticated()) {
     res.status(401).json({
-      message: 'You have not been authorized yet',
+      message: 'You have already authorized',
       answer: null,
     })
     return
