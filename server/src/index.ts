@@ -10,12 +10,11 @@ import path from 'path'
 const clientBuildPath = path.join(process.cwd(), 'client', 'build')
 
 import cookieParser from 'cookie-parser'
-import express from 'express'
+import express, { Request, Response, NextFunction } from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import { v4 as uuidv4 } from 'uuid'
 import config from './config.json' with { type: 'json' }
-import { isAuthenticated } from './middlewares.js'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
 
@@ -52,6 +51,18 @@ app.use(passport.session())
 app.use('/api/local', routers.localRouter)
 app.use('/api/google', routers.googleRouter)
 app.use('/api/github', routers.githubRouter)
+
+const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).json({
+      message: 'You have not been authorized yet',
+      answer: null,
+    })
+    return
+  }
+
+  next()
+}
 
 app.get('/api/auth/status', isAuthenticated, (req, res) => {
   res.status(200).json({
