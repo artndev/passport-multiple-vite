@@ -48,6 +48,14 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+passport.serializeUser((user: Express.User, done) => {
+  done(null, user)
+})
+
+passport.deserializeUser((user: Express.User, done) => {
+  done(null, user)
+})
+
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   console.log(req.session)
 

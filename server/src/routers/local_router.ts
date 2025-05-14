@@ -4,6 +4,7 @@ import config from '../config.json' with { type: 'json' }
 
 const router = express.Router()
 
+// IT DIDN'T HELP ME!
 router.post('/login', (req, res, next) => {
   return passport.authenticate(
     'local-login',
