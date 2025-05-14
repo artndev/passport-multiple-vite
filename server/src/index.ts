@@ -42,8 +42,8 @@ app.use(
     saveUninitialized: false,
     resave: false,
     proxy: true,
-    store: redisStore,
-    //    name: uuidv4(),
+    // store: redisStore,
+    // name: uuidv4(),
     cookie: {
       maxAge: 3600000, // 1h
       path: '/',
