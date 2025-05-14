@@ -41,7 +41,7 @@ app.use(
       path: '/',
       httpOnly: true,
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'strict',
     },
   })
 )
