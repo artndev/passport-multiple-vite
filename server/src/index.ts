@@ -20,7 +20,7 @@ import './strategies/_strategies.js'
 import { RedisStore } from 'connect-redis'
 import { createClient } from 'redis'
 
-let redisClient = createClient()
+let redisClient = createClient({ url: process.env.REDIS_URL })
 redisClient.connect().catch(console.error)
 
 let redisStore = new RedisStore({ client: redisClient })
@@ -42,7 +42,7 @@ app.use(
     saveUninitialized: false,
     resave: false,
     proxy: true,
-    // store: redisStore,
+    store: redisStore,
     // name: uuidv4(),
     cookie: {
       maxAge: 3600000, // 1h
