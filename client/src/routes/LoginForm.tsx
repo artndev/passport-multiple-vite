@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../axios'
 import AuthForm from '../components/AuthForm'
-import AuthContext from '../contexts/Auth'
+import { useAuthContext } from '../contexts/Auth'
 import '../styles/css/LoginForm.css'
 
 const LoginForm = () => {
-  const { setAuth } = useContext(AuthContext)
+  const { setAuth } = useAuthContext()
   const navigator = useNavigate()
   const [err, setErr] = useState<IAxiosErrorResponse>(undefined)
 
@@ -21,14 +21,11 @@ const LoginForm = () => {
       axios
         .post('/api/local/login', data)
         .then(res => {
-          navigator('/')
-
-          return res
+          setAuth(res.data.answer)
         })
-        .then(res => {
-          console.log(res)
-
-          setTimeout(() => setAuth(res.data.answer), 4)
+        .then(() => {
+          navigator('/')
+          navigator(0)
         })
         .catch(err => {
           console.log(err)
