@@ -1,6 +1,8 @@
 You can find there the advanced authorization system created mainly using React / Express and based on [Passport-Local Strategy](https://github.com/jaredhanson/passport-local), [Passport-Google-OAuth2 Strategy](https://github.com/jaredhanson/passport-google-oauth2) with [Passport-Github-OAuth2 Strategy](https://github.com/cfsghost/passport-github).
 
-P.S.: Deployed on Vercel.
+P.S.: Deployed on Vercel (not working due to module storage).
+<br/>
+P.S.S.: I am fixing it!
 
 ## Tech Stack
 
@@ -12,6 +14,8 @@ P.S.: Deployed on Vercel.
 
 <img src="./assets/react.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/express.svg" width=50 />
-<img src="./assets/axios.svg" width=50 />
-<img src="./assets/vercel.svg" width=50 />&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="./assets/passport.png" width=50 />
+<img src="./assets/axios.svg" width=50 />&nbsp;
+<img src="./assets/redis.svg" width=50 />&nbsp;&nbsp;&nbsp;
+<img src="./assets/mysql.svg" width=50 />&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="./assets/passport.png" width=50 />&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="./assets/vercel.svg" width=50 />
