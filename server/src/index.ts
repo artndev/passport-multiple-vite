@@ -6,14 +6,11 @@ const clientBuildPath = path.join(process.cwd(), 'client', 'build')
 
 import { RedisStore } from 'connect-redis'
 import cookieParser from 'cookie-parser'
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import { createClient } from 'redis'
-import { v4 as uuidv4 } from 'uuid'
-import db from '../src/db.js'
 import config from './config.json' with { type: 'json' }
-import * as middlewares from './middlewares.js'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
 
@@ -39,7 +36,6 @@ app.use(
     saveUninitialized: false,
     resave: false,
     proxy: true,
-    name: uuidv4(),
     store: redisStore,
     cookie: {
       maxAge: 3600000, // 1h
@@ -53,33 +49,54 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-passport.serializeUser((user, done) => {
-  return done(null, user.id)
+passport.serializeUser((user: Express.User, done) => {
+  return done(null, user)
 })
 
-passport.deserializeUser((id, done) => {
-  try {
-    const user = db.users.find(user => user.id === id)
-    if (!user) throw new Error('Current user is not found')
+passport.deserializeUser((user: Express.User, done) => {
+  return done(null, user)
+})
 
-    return done(null, user)
-  } catch (err) {
-    return done(err, undefined)
+const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
+  if (!req.isAuthenticated()) {
+    res.status(401).json({
+      message: 'You have not authorized yet',
+      answer: null,
+    })
+    return
   }
-})
 
-app.use('/api/local', middlewares.isNotAuthenticated, routers.localRouter)
+  next()
+}
+
+const isNotAuthenticated = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.isAuthenticated()) {
+    res.status(401).json({
+      message: 'You have already authorized',
+      answer: null,
+    })
+    return
+  }
+
+  next()
+}
+
+app.use('/api/local', isNotAuthenticated, routers.localRouter)
 app.use('/api/google', routers.googleRouter)
 app.use('/api/github', routers.githubRouter)
 
-app.get('/api/auth/status', middlewares.isAuthenticated, (req, res) => {
+app.get('/api/auth/status', isAuthenticated, (req, res) => {
   res.status(200).json({
     message: 'You are authorized',
     answer: req.user,
   })
 })
 
-app.post('/api/auth/logout', middlewares.isAuthenticated, (req, res) => {
+app.post('/api/auth/logout', isAuthenticated, (req, res) => {
   req.logout(err => {
     if (err) {
       res.status(500).json({
