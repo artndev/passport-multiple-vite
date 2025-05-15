@@ -25,7 +25,11 @@ const RegisterForm = () => {
 
           return res
         })
-        .then(res => setTimeout(() => setAuth(res.data.answer), 4))
+        .then(res => {
+          console.log(res)
+
+          setTimeout(() => setAuth(res.data.answer), 4)
+        })
         .catch(err => {
           console.log(err)
 
