@@ -1,6 +1,7 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import db from '../db.js'
+import { userController } from '../controllers/_controllers.js'
 
 export default [
   passport.use(
