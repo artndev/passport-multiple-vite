@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from '../axios'
-import config from '../config.json'
 import { useAuthContext } from '../contexts/Auth'
 import '../styles/css/Home.css'
+import config from '../config.json'
 
 const Home = () => {
   const { auth, setAuth } = useAuthContext()
@@ -19,6 +19,10 @@ const Home = () => {
       console.log(err)
     }
   }
+
+  useEffect(() => {
+    console.log(auth)
+  }, [auth])
 
   return (
     <div className="home__container">
