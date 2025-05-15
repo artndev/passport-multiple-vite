@@ -33,30 +33,30 @@ const Home = () => {
           <>
             <h3>Authorized</h3>
             <div className="home__group">
-              {auth.googleId === '' ? (
+              {!auth.GoogleId ? (
                 <a
-                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.id}`}
+                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.Id}`}
                 >
                   Attach Google
                 </a>
               ) : (
                 <a
-                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.id}`}
+                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.Id}`}
                 >
-                  Google is attached as: <strong>{auth.googleId}</strong>
+                  Google is attached as: <strong>{auth.GoogleId}</strong>
                 </a>
               )}
-              {auth.githubId === '' ? (
+              {!auth.GithubId ? (
                 <a
-                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.id}`}
+                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.Id}`}
                 >
                   Attach Github
                 </a>
               ) : (
                 <a
-                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.id}`}
+                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.Id}`}
                 >
-                  Github is attached as: <strong>{auth.githubId}</strong>
+                  Github is attached as: <strong>{auth.GithubId}</strong>
                 </a>
               )}
             </div>

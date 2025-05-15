@@ -15,16 +15,10 @@ declare global {
     Email: string
     GoogleId: string
     GithubId: string
+    Created: string
   }
 
   namespace Express {
-    interface User {
-      id?: number
-      username: string
-      password: string
-      email: string
-      googleId: string
-      githubId: string
-    }
+    interface User extends IUser {}
   }
 }

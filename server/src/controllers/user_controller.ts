@@ -4,29 +4,134 @@ import pool from '../pool.js'
 
 export default {
   Register: async (credentials: ICredentials) => {
-    const salt = await bcrypt.genSalt(10)
-    const passwordHash = await bcrypt.hash(credentials.password, salt)
+    try {
+      const salt = await bcrypt.genSalt(10)
+      const passwordHash = await bcrypt.hash(credentials.password, salt)
 
-    await pool.query<ResultSetHeader>(
-      'INSERT INTO Users (Username, Password, Email) VALUES (?, ?, ?);',
-      [credentials.username, passwordHash, credentials.email]
-    )
+      await pool.query<ResultSetHeader>(
+        'INSERT INTO Users (Username, Password, Email) VALUES (?, ?, ?);',
+        [credentials.username, passwordHash, credentials.email]
+      )
 
-    return 'You have successfully authorized'
+      const [rows] = await pool.query<IUser[]>(
+        'SELECT * FROM Users WHERE Username = ?;',
+        [credentials.username]
+      )
+
+      return {
+        message: 'You have successfully authorized',
+        answer: rows[0],
+      }
+    } catch (err) {
+      console.log(err)
+
+      throw new Error('Server is not responding')
+    }
   },
   Login: async (credentials: Omit<ICredentials, 'email'>) => {
-    const [rows] = await pool.query<IUser[]>(
-      'SELECT * FROM Users WHERE Username = ?;',
-      [credentials.username]
-    )
+    try {
+      const [rows] = await pool.query<IUser[]>(
+        'SELECT * FROM Users WHERE Username = ?;',
+        [credentials.username]
+      )
 
-    if (!rows.length)
-      throw new Error('Your authorization credentials are invalid')
+      if (!rows.length)
+        throw new Error('Your authorization credentials are invalid')
 
-    const passwordHash = rows[0]!.Password
-    const status = await bcrypt.compare(credentials.password, passwordHash)
-    if (!status) throw new Error('Your authorization credentials are invalid')
+      const passwordHash = rows[0]!.Password
+      const status = await bcrypt.compare(credentials.password, passwordHash)
+      if (!status) throw new Error('Your authorization credentials are invalid')
 
-    return 'You have successfully logged in'
+      return {
+        message: 'You have successfully authorized',
+        answer: rows[0],
+      }
+    } catch (err) {
+      console.log(err)
+
+      throw new Error('Server is not responding')
+    }
+  },
+  AttachGoogleId: async (data: {
+    id: string | undefined
+    googleId: string
+  }) => {
+    try {
+      console.log(data.googleId)
+
+      const [rows] = await pool.query<IUser[]>(
+        'SELECT * FROM Users WHERE GoogleId = ?;',
+        [data.googleId]
+      )
+
+      let user = rows[0]
+      if (data.id) {
+        await pool.query<ResultSetHeader>(
+          `
+            UPDATE Users SET GoogleId = ?
+            WHERE Id = ?;
+          `,
+          [data.googleId, Number(data.id)]
+        )
+
+        const [rows2] = await pool.query<IUser[]>(
+          'SELECT * FROM Users WHERE GoogleId = ?;',
+          [data.googleId]
+        )
+
+        user = rows2[0]
+      }
+
+      if (!user) throw new Error('This user is not found')
+
+      return {
+        message: 'You have successfully attached social id',
+        answer: user,
+      }
+    } catch (err) {
+      console.log(err)
+
+      throw new Error('Server is not responding')
+    }
+  },
+  AttachGithubId: async (data: {
+    id: string | undefined
+    githubId: string
+  }) => {
+    try {
+      const [rows] = await pool.query<IUser[]>(
+        'SELECT * FROM Users WHERE GithubId = ?;',
+        [data.githubId]
+      )
+
+      let user = rows[0]
+      if (data.id) {
+        await pool.query<ResultSetHeader>(
+          `
+            UPDATE Users SET GithubId = ?
+            WHERE Id = ?;
+          `,
+          [data.githubId, Number(data.id)]
+        )
+
+        const [rows2] = await pool.query<IUser[]>(
+          'SELECT * FROM Users WHERE GithubId = ?;',
+          [data.githubId]
+        )
+
+        user = rows2[0]
+      }
+
+      if (!user) throw new Error('This user is not found')
+
+      return {
+        message: 'You have successfully attached social id',
+        answer: user,
+      }
+    } catch (err) {
+      console.log(err)
+
+      throw new Error('Server is not responding')
+    }
   },
 }

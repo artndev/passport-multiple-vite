@@ -117,5 +117,5 @@ app.get('/*', (_req, res) => {
   res.sendFile(path.join(clientBuildPath, 'index.html'))
 })
 
-const port = config.SERVER_PORT || 8000
+const port = config.SERVER_PORT
 app.listen(port, () => console.log(`Server listening on port ${port}`))

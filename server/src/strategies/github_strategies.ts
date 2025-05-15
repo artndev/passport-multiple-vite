@@ -6,7 +6,7 @@ import passport from 'passport'
 import { Strategy as GithubStrategy, Profile } from 'passport-github2'
 import { VerifyCallback } from 'passport-google-oauth20'
 import config from '../config.json' with { type: 'json' }
-import db from '../db.js'
+import { userController } from '../controllers/_controllers.js'
 
 export default [
   passport.use(
@@ -18,32 +18,26 @@ export default [
         callbackURL: `${config.SERVER_URL}/api/github/callback`,
         passReqToCallback: true,
       },
-      (
+      async (
         req: Request,
         _accessToken: string,
         _refreshToken: string | undefined,
         profile: Profile,
         done: VerifyCallback
       ) => {
-        try {
-          let user = db.users.find(user => user.githubId === profile.id)
-          if (req.query.state) {
-            const index = db.users.findIndex(
-              user => user.id === Number(req.query.state)
-            )
+        return await userController
+          .AttachGithubId({
+            id: req.query?.state as string | undefined,
+            githubId: profile.id,
+          })
+          .then(res => {
+            return done(null, res.answer)
+          })
+          .catch(err => {
+            console.log(err)
 
-            if (index === -1) throw new Error('This user is not found')
-
-            db.users[index]!.githubId = profile.id
-            user = db.users[index]
-          }
-
-          if (!user) throw new Error('This user is not found')
-
-          return done(null, user)
-        } catch (err) {
-          return done(err, undefined)
-        }
+            return done(err, undefined)
+          })
       }
     )
   ),

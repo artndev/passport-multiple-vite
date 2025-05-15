@@ -4,12 +4,13 @@ export {}
 
 declare global {
   export interface IUser {
-    id: number
-    username: string
-    password: string
-    email: string
-    googleId: string
-    githubId: string
+    Id?: number
+    Username: string
+    Password: string
+    Email: string
+    GoogleId: string
+    GithubId: string
+    Created: string
   }
 
   export interface IAuthContext {

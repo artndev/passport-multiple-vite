@@ -1,6 +1,5 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
-import db from '../db.js'
 import { userController } from '../controllers/_controllers.js'
 
 export default [
@@ -11,19 +10,20 @@ export default [
         usernameField: 'username',
         passwordField: 'password',
       },
-      (username, password, done) => {
-        try {
-          const user = db.users.find(
-            user => user.username === username || user.email === username
-          )
-          if (!user) throw new Error('This user is not found')
-          if (user.password !== password)
-            throw new Error('Your credentials are invalid')
+      async (username, password, done) => {
+        return await userController
+          .Login({
+            username: username,
+            password: password,
+          })
+          .then(res => {
+            return done(null, res.answer)
+          })
+          .catch(err => {
+            console.log(err)
 
-          return done(null, user)
-        } catch (err) {
-          return done(err, undefined)
-        }
+            return done(err, undefined)
+          })
       }
     )
   ),
@@ -35,29 +35,21 @@ export default [
         passwordField: 'password',
         passReqToCallback: true,
       },
-      (req, username, password, done) => {
-        try {
-          const isUsername = db.users.find(user => user.username === username)
-          if (isUsername)
-            throw new Error('This username has already been taken')
-
-          const isEmail = db.users.find(user => user.email === req.body.email)
-          if (isEmail) throw new Error('This email has already been taken')
-
-          const user = {
-            id: db.users.length + 1,
+      async (req, username, password, done) => {
+        return await userController
+          .Register({
             username: username,
             password: password,
             email: req.body.email,
-            googleId: '',
-            githubId: '',
-          }
-          db.users.push(user)
+          })
+          .then(res => {
+            return done(null, res.answer)
+          })
+          .catch(err => {
+            console.log(err)
 
-          return done(null, user)
-        } catch (err) {
-          return done(err, undefined)
-        }
+            return done(err, undefined)
+          })
       }
     )
   ),
