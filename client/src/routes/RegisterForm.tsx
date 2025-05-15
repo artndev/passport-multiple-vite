@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../axios'
 import AuthForm from '../components/AuthForm'
-import { useAuthContext } from '../contexts/Auth'
+import AuthContext from '../contexts/Auth'
 import '../styles/css/RegisterForm.css'
 
 const RegisterForm = () => {
-  const { setAuth } = useAuthContext()
+  const { setAuth } = useContext(AuthContext)
   const navigator = useNavigate()
   const [err, setErr] = useState<IAxiosErrorResponse>(undefined)
 
