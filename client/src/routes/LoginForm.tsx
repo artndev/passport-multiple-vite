@@ -23,8 +23,9 @@ const LoginForm = () => {
         .then(res => {
           navigator('/')
 
-          setAuth(res.data.answer)
+          return res
         })
+        .then(res => setTimeout(() => setAuth(res.data.answer), 4))
         .catch(err => {
           console.log(err)
 
