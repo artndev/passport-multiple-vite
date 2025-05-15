@@ -18,15 +18,12 @@ export default [
       },
       (req, _accessToken, _refreshToken, profile, done) => {
         try {
-          // console.log(profile)
-          // console.log(req.query.state)
           let user = db.users.find(user => user.googleId === profile.id)
           if (req.query.state) {
             const index = db.users.findIndex(
               user => user.id === Number(req.query.state)
             )
 
-            //console.log(index, db.users[index])
             if (index === -1) throw new Error('This user is not found')
 
             db.users[index]!.googleId = profile.id
