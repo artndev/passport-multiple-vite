@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from '../axios'
 import { useAuthContext } from '../contexts/Auth'
 import '../styles/css/Home.css'
@@ -20,9 +20,9 @@ const Home = () => {
     }
   }
 
-  // useEffect(() => {
-  //   console.log(auth)
-  // }, [auth])
+  useEffect(() => {
+    console.log(auth)
+  }, [auth])
 
   return (
     <div className="home__container">
