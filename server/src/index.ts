@@ -11,7 +11,7 @@ import session from 'express-session'
 import passport from 'passport'
 import { createClient } from 'redis'
 import config from './config.json' with { type: 'json' }
-import { userController } from './controllers/_controllers'
+import { userController } from './controllers/_controllers.js'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
 
