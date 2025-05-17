@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import path from 'path'
-const clientBuildPath = path.join(process.cwd(), 'client', 'build')
+const clientBuildPath = path.join(process.cwd(), '../', 'client', 'dist')
 
 import { RedisStore } from 'connect-redis'
 import cookieParser from 'cookie-parser'

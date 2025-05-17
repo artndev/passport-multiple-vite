@@ -33,7 +33,6 @@
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
     "redis": "^5.0.1",
-    "ts-template": "file:..",
     "typescript": "^5.8.3",
     "uuid": "^11.1.0"
   },
