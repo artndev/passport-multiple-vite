@@ -4,6 +4,9 @@ P.S.: Deployed on Vercel.
 
 ## Tech Stack
 
+<img src="./assets/npm.svg" width=50 />&nbsp;&nbsp;&nbsp;
+<img src="./assets/vite.svg" width=50 />
+
 <img src="./assets/typescript.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/javascript.svg" width=50 />&nbsp;&nbsp;&nbsp;
 <img src="./assets/html5.svg" width=50 />&nbsp;&nbsp;
