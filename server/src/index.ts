@@ -42,7 +42,7 @@ app.use(
       maxAge: 3600000, // 1h
       path: '/',
       httpOnly: true,
-      secure: true,
+      secure: false, // true
       sameSite: 'strict',
     },
   })
