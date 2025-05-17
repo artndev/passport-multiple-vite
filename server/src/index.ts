@@ -51,18 +51,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 passport.serializeUser((user: Express.User, done) => {
-  return done(null, user.Id)
+  return done(null, user)
 })
 
-passport.deserializeUser(async (id: number, done) => {
-  return await userController
-    .FindById(id)
-    .then(res => done(null, res.answer))
-    .catch(err => {
-      console.log(err)
-
-      return done(err, undefined)
-    })
+passport.deserializeUser((user: Express.User, done) => {
+  return done(null, user)
 })
 
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
