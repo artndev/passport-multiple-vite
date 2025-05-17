@@ -16,9 +16,7 @@ export default [
             username: username,
             password: password,
           })
-          .then(res => {
-            return done(null, res.answer)
-          })
+          .then(res => done(null, res.answer))
           .catch(err => {
             console.log(err)
 

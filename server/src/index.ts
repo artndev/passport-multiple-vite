@@ -11,6 +11,7 @@ import session from 'express-session'
 import passport from 'passport'
 import { createClient } from 'redis'
 import config from './config.json' with { type: 'json' }
+import { userController } from './controllers/_controllers'
 import * as routers from './routers/_routers.js'
 import './strategies/_strategies.js'
 
@@ -50,11 +51,18 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 passport.serializeUser((user: Express.User, done) => {
-  return done(null, user)
+  return done(null, user.Id)
 })
 
-passport.deserializeUser((user: Express.User, done) => {
-  return done(null, user)
+passport.deserializeUser(async (id: number, done) => {
+  return await userController
+    .FindById(id)
+    .then(res => done(null, res.answer))
+    .catch(err => {
+      console.log(err)
+
+      return done(err, undefined)
+    })
 })
 
 const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {

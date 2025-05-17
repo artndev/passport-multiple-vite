@@ -22,9 +22,7 @@ export default [
             id: req.query?.state as string | undefined,
             googleId: profile.id,
           })
-          .then(res => {
-            return done(null, res.answer)
-          })
+          .then(res => done(null, res.answer))
           .catch(err => {
             console.log(err)
 

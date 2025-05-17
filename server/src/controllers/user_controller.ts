@@ -82,7 +82,7 @@ export default {
         user = rows2[0]
       }
 
-      if (!user) throw new Error('This user is not found')
+      if (!user) throw new Error('User is not found')
 
       return {
         message: 'You have successfully attached social id',
@@ -122,11 +122,30 @@ export default {
         user = rows2[0]
       }
 
-      if (!user) throw new Error('This user is not found')
+      if (!user) throw new Error('User is not found')
 
       return {
         message: 'You have successfully attached social id',
         answer: user,
+      }
+    } catch (err) {
+      console.log(err)
+
+      throw new Error('Server is not responding')
+    }
+  },
+  FindById: async (id: number) => {
+    try {
+      const [rows] = await pool.query<IUser[]>(
+        'SELECT * FROM Users WHERE Id = ?;',
+        [id]
+      )
+
+      if (!rows.length) throw new Error('User with this id is not found')
+
+      return {
+        message: 'You have successfully found user with this id',
+        answer: rows[0],
       }
     } catch (err) {
       console.log(err)
