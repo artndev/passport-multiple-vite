@@ -34,30 +34,22 @@ const Home = () => {
             <h3>Authorized</h3>
             <div className="home__group">
               {!auth.GoogleId ? (
-                <a
-                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.Id}`}
-                >
+                <a href={`${config.SERVER_URL}/api/google/login?id=${auth.Id}`}>
                   Attach Google
                 </a>
               ) : (
-                <a
-                  href={`${config.BACKEND_URL}/api/google/login?id=${auth.Id}`}
-                >
+                <span>
                   Google is attached as: <strong>{auth.GoogleId}</strong>
-                </a>
+                </span>
               )}
               {!auth.GithubId ? (
-                <a
-                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.Id}`}
-                >
+                <a href={`${config.SERVER_URL}/api/github/login?id=${auth.Id}`}>
                   Attach Github
                 </a>
               ) : (
-                <a
-                  href={`${config.BACKEND_URL}/api/github/login?id=${auth.Id}`}
-                >
+                <span>
                   Github is attached as: <strong>{auth.GithubId}</strong>
-                </a>
+                </span>
               )}
             </div>
             <button type="button" onClick={logout}>
