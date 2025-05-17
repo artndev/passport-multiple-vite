@@ -48,10 +48,10 @@ const AuthForm: React.FC<IAuthFormProps> = ({
           <span>•</span>
           <h3>Log in with socials</h3>
           <div className="form__group">
-            <a href={`${config.BACKEND_URL}/api/google/login`}>
+            <a href={`${config.SERVER_URL}/api/google/login`}>
               <button type="button">Google</button>
             </a>
-            <a href={`${config.BACKEND_URL}/api/github/login`}>
+            <a href={`${config.SERVER_URL}/api/github/login`}>
               <button type="button">Github</button>
             </a>
           </div>
